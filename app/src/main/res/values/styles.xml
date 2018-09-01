@@ -27,7 +27,6 @@
     </style>
 
 
-
     <style name="common_layout_style">
         <item name="android:layout_height">45dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -47,5 +46,14 @@
 
     </style>
 
-
+    <style name="tab_text">
+        <item name="android:textColor">@color/color_666666</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:gravity">left</item>
+    </style>
+    <style name="tab_text_selected">
+        <item name="android:textColor">@color/color_2196f3</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:gravity">left</item>
+    </style>
 </resources>
