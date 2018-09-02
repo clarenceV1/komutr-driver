@@ -38,20 +38,13 @@ public class MineFragment extends GodBasePresenterFragment<MineBinding> implemen
     }
 
     private void initListener() {
-        mViewBinding.rlPerson.setOnClickListener(v ->
-                RouterManager.goPerson()
-        );
-
-        mViewBinding.rlWalllet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        mViewBinding.rlPerson.setOnClickListener(v -> RouterManager.goPerson());
+        mViewBinding.rlWalllet.setOnClickListener(v -> RouterManager.goWallet());
         mViewBinding.rlVehicle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+//                RouterManager.goRegister();
+                RouterManager.goLogin();
             }
         });
         mViewBinding.rlSchedule.setOnClickListener(new View.OnClickListener() {

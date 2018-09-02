@@ -6,9 +6,9 @@ import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.cai.framework.logger.Logger;
 import com.komutr.driver.base.AppBasePresenter;
-import com.komutr.driver.been.PhoneCode;
 import com.komutr.driver.been.RespondDO;
 import com.komutr.driver.been.User;
+import com.komutr.driver.common.Constant;
 import com.komutr.driver.dao.UserInfoDao;
 import com.komutr.driver.event.LoginEvent;
 
@@ -38,19 +38,17 @@ public class LoginPresenter extends AppBasePresenter<LoginView> {
     public void onAttached() {
     }
 
-
-
-    public void registeredOrLogin(String code, String phone, String verTokenKey) {
+    public void login(String phone, String password) {
         Map<String, String> query = new HashMap<>();
-        query.put("m", "customer.registeredOrLogin");
-        query.put("auth_key", "d511D54i5Odb6WT");
-        query.put("ver_token_key", verTokenKey);
-        query.put("code", code);
+        query.put("m", "chauffeur.login");
         query.put("phone", phone);
+        query.put("password", password);
+        query.put("auth_key", Constant.APP_AUTH);
         Disposable disposable = requestStore.get().commonRequest(query).doOnSuccess(new Consumer<RespondDO>() {
             @Override
             public void accept(RespondDO respondDO) {
-                if (respondDO.isStatus()&& !TextUtils.isEmpty(respondDO.getData())) {
+                Log.d("login", respondDO.toString());
+                if (respondDO.isStatus() && !TextUtils.isEmpty(respondDO.getData())) {
                     User userInfo = JSON.parseObject(respondDO.getData(), User.class);
                     respondDO.setObject(userInfo);
                     if (userInfoDao != null) {
@@ -60,65 +58,15 @@ public class LoginPresenter extends AppBasePresenter<LoginView> {
                 }
             }
         }).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<RespondDO>() {
-                    @Override
-                    public void accept(RespondDO respondDO) {
-                        Log.d("registeredOrLogin", respondDO.toString());
-                        if (respondDO.isStatus()) { //成功
-                            mView.registeredOrLoginCallBack(respondDO);
-                        } else {//失败
-                            mView.registeredOrLoginCallBack(respondDO);
-                        }
+                .subscribe(respondDO -> {
+                    if (respondDO.isStatus()) { //成功
+                        mView.registeredOrLoginCallBack(respondDO);
+                    } else {//失败
+                        mView.registeredOrLoginCallBack(respondDO);
                     }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) {
-                        Logger.e(throwable.getMessage());
-                    }
-                });
-        mCompositeSubscription.add(disposable);
-    }
-
-    /**
-     * 获取验证码
-     *
-     * @param phone
-     * @param type  1 注册 2 找回密码 3 重置密码
-     */
-    public void verificationCode(final String phone, int type) {
-        Map<String, String> query = new HashMap<>();
-        query.put("m", "customer.verification");
-        query.put("auth_key", "d511D54i5Odb6WT");
-        query.put("phone", phone);
-        query.put("type", type + "");
-        Disposable disposable = requestStore.get().commonRequest(query)
-                .observeOn(AndroidSchedulers.mainThread()).doOnSuccess(new Consumer<RespondDO>() {
-                    @Override
-                    public void accept(RespondDO respondDO) {
-                        if(respondDO.isStatus()&&!TextUtils.isEmpty(respondDO.getData())){
-                            PhoneCode phoneCode = JSON.parseObject(respondDO.getData(), PhoneCode.class);
-                            respondDO.setObject(phoneCode);
-                        }
-                    }
-                })
-                .subscribe(new Consumer<RespondDO>() {
-                    @Override
-                    public void accept(RespondDO respondDO) {
-                        Logger.d(respondDO.toString());
-                        if (respondDO.isStatus()) { //成功
-                            mView.verificationCodeCallback(respondDO);
-                        } else {//失败
-                            mView.verificationCodeCallback(respondDO);
-                        }
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) {
-                        Logger.e(throwable.getMessage());
-                        RespondDO respondDO = new RespondDO();
-                        mView.verificationCodeCallback(respondDO);
-                    }
-                });
+                }, throwable ->
+                    Logger.e(throwable.getMessage())
+                );
         mCompositeSubscription.add(disposable);
     }
 }

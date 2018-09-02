@@ -43,6 +43,7 @@ public class NicknameActivity extends AppBaseActivity<NicknameBinding> implement
                     }
             );
         }
+        mViewBinding.tvTxtNum.setText("0/20");
     }
 
     @Override

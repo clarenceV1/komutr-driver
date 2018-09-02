@@ -1,4 +1,4 @@
-package com.komutr.driver.ui.wallet;
+package com.komutr.driver.ui.code;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cai.framework.base.GodBasePresenter;
@@ -6,16 +6,17 @@ import com.komutr.driver.R;
 import com.komutr.driver.base.App;
 import com.komutr.driver.base.AppBaseActivity;
 import com.komutr.driver.common.RouterManager;
-import com.komutr.driver.databinding.WalletBinding;
+import com.komutr.driver.databinding.QrcodeBinding;
+import com.komutr.driver.ui.wallet.WalletView;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-@Route(path = RouterManager.ROUTER_WALLET, name = "我的-我的钱包")
-public class WalletActivity extends AppBaseActivity<WalletBinding> implements WalletView {
+@Route(path = RouterManager.ROUTER_QRCODE, name = "我的-二维码首款")
+public class QRCodeActivity extends AppBaseActivity<QrcodeBinding> implements WalletView {
     @Inject
-    WalletPresenter presenter;
+    QRCodePresenter presenter;
 
     @Override
     public void initDagger() {
@@ -29,18 +30,11 @@ public class WalletActivity extends AppBaseActivity<WalletBinding> implements Wa
 
     @Override
     public void initView() {
-        setBarTitle(getString(R.string.wallet_title));
-        mViewBinding.rlQrCode.setOnClickListener(v ->
-                RouterManager.goQRCode()
-        );
-        mViewBinding.rlIncomeRecord.setOnClickListener(v ->
-                RouterManager.goIncomeRecord()
-        );
-
+        setBarTitle(getString(R.string.qr_code_title));
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.wallet;
+        return R.layout.qrcode;
     }
 }

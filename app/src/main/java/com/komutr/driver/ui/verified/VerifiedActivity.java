@@ -2,8 +2,6 @@ package com.komutr.driver.ui.verified;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cai.framework.base.GodBasePresenter;
-import com.cai.framework.imageload.GlideCircleTransform;
-import com.cai.framework.imageload.GlideRoundTransform;
 import com.cai.framework.imageload.ILoadImage;
 import com.cai.framework.imageload.ILoadImageParams;
 import com.cai.framework.imageload.ImageForGlideParams;

@@ -24,4 +24,16 @@
     <string name="person_gender">Gender</string>
     <string name="nickname_title">Nickname</string>
     <string name="save">Save</string>
+    <string name="qr_code_notice">Scan the qr code and pay me</string>
+    <string name="pay_records">Payment records</string>
+    <string name="qr_code_title">Qr code collection</string>
+    <string name="wallet_title">My wallet</string>
+    <string name="wallet_withdrawal">withdrawal</string>
+    <string name="wallet_unit">₱</string>
+    <string name="wallet_balance">balance</string>
+    <string name="wallet_qrcode">Qr code collection</string>
+    <string name="wallet_income_record">Income record</string>
+    <string name="wallet_withdrawals_record">Withdrawals record</string>
+    <string name="wallet_bank_card">bank card</string>
+    <string name="income_record_title">Income record</string>
 </resources>

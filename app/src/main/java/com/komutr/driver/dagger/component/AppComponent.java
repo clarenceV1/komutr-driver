@@ -4,6 +4,8 @@ package com.komutr.driver.dagger.component;
 import com.cai.framework.dagger.ActivityScope;
 import com.komutr.driver.base.App;
 import com.komutr.driver.dagger.module.CommonModule;
+import com.komutr.driver.ui.code.QRCodeActivity;
+import com.komutr.driver.ui.income.IncomeRecordActivity;
 import com.komutr.driver.ui.login.LoginActivity;
 import com.komutr.driver.ui.main.MainActivity;
 import com.komutr.driver.ui.main.fragment.MineFragment;
@@ -13,6 +15,7 @@ import com.komutr.driver.ui.message.MessageActivity;
 import com.komutr.driver.ui.message.MessageDetailActivity;
 import com.komutr.driver.ui.nickname.NicknameActivity;
 import com.komutr.driver.ui.person.PersonActivity;
+import com.komutr.driver.ui.register.RegisterActivity;
 import com.komutr.driver.ui.verified.VerifiedActivity;
 import com.komutr.driver.ui.wallet.WalletActivity;
 import com.komutr.driver.ui.web.WebActivity;
@@ -36,10 +39,13 @@ public interface AppComponent {
     void inject(VerifiedActivity activity);
     void inject(PersonActivity activity);
     void inject(NicknameActivity activity);
+    void inject(QRCodeActivity activity);
+    void inject(IncomeRecordActivity activity);
+    void inject(RegisterActivity activity);
+
 
     void inject(ScheduleFragment fragment);
     void inject(RouteFragment fragment);
     void inject(MineFragment fragment);
-
 
 }

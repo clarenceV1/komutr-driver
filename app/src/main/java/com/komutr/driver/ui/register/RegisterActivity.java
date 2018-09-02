@@ -1,4 +1,4 @@
-package com.komutr.driver.ui.login;
+package com.komutr.driver.ui.register;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cai.framework.base.GodBasePresenter;
@@ -8,16 +8,16 @@ import com.komutr.driver.base.AppBaseActivity;
 import com.komutr.driver.been.PhoneCode;
 import com.komutr.driver.been.RespondDO;
 import com.komutr.driver.common.RouterManager;
-import com.komutr.driver.databinding.LoginBinding;
+import com.komutr.driver.databinding.RegisterBinding;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-@Route(path = RouterManager.ROUTER_LOGIN, name = "登录/注册")
-public class LoginActivity extends AppBaseActivity<LoginBinding> implements LoginView {
+@Route(path = RouterManager.ROUTER_REGISTER, name = "注册")
+public class RegisterActivity extends AppBaseActivity<RegisterBinding> implements RegisterView {
     @Inject
-    LoginPresenter presenter;
+    RegisterPresenter presenter;
 
     PhoneCode phoneCode;
 
@@ -35,15 +35,22 @@ public class LoginActivity extends AppBaseActivity<LoginBinding> implements Logi
     public void initView() {
 
         mViewBinding.btnCommit.setOnClickListener(v -> {
-            String password = mViewBinding.editPassword.getText().toString();
+            String code = mViewBinding.etInputVerificAtionCode.getText().toString();
             String phone = mViewBinding.etPhone.getText().toString();
-            presenter.login(phone,password);
+            String password = mViewBinding.editPassword.getText().toString();
+            if (phoneCode != null) {
+                presenter.registered(phone, password, code, phoneCode.getVer_token_key());
+            }
+        });
+        mViewBinding.btnVerificationCode.setOnClickListener(v -> {
+            String phone = mViewBinding.etPhone.getText().toString();
+            presenter.verificationCode(phone);
         });
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.login;
+        return R.layout.register;
     }
 
     @Override

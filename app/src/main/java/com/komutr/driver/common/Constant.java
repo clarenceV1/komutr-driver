@@ -12,6 +12,7 @@ public class Constant {
     public static final String TEST_BASE_URL = "http://car.xinjuhao.wang/";
     private static final String IS_TEST_ENV = "is_test_env";//是否是测试环境
 
+    public static final String APP_AUTH = "d511D54i5Odb6WT";//未登录获取验证码/注册/登录
     /**
      * 设置是否是测试环境
      *
