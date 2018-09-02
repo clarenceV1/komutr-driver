@@ -68,6 +68,7 @@ public class MainActivity extends AppBaseActivity<MainBinding> implements MainVi
             }
         }
         transaction.commitAllowingStateLoss();
+        oldPosition = currentPosition;
     }
 
     public Fragment creatFragment(int position) {

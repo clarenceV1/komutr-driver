@@ -31,8 +31,6 @@ android {
             abiFilters 'armeabi', 'armeabi-v7a', 'x86'
 //, 'arm64-v8a' //arm64-v8a会导致J2V8闪退,会导致X5无法加载内核 x86内核几乎没了
         }
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
         release {
@@ -74,8 +72,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     lintOptions {
@@ -126,8 +124,4 @@ dependencies {
 
     //framwork
     api project(':LibFrameWork')
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

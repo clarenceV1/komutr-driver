@@ -12,5 +12,8 @@
     <color name="color_2196f3">#2196f3</color>
 
     <color name="color_666666">#666666</color>
-
+    <color name="color_000000">#000000</color>
+    <color name="color_eaeaea">#eaeaea</color>
+    <color name="color_d93e3e">#d93e3e</color>
+    <color name="color_f1f1f4">#f1f1f4</color>
 </resources>

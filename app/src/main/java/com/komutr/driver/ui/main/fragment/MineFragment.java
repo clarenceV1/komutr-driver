@@ -1,5 +1,7 @@
 package com.komutr.driver.ui.main.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 
 import com.cai.framework.base.GodBasePresenterFragment;
@@ -33,7 +35,42 @@ public class MineFragment extends GodBasePresenterFragment<MineBinding> implemen
 
     @Override
     public void initView(View view) {
+        initListener();
+    }
 
+    private void initListener() {
+        mViewBinding.rlWalllet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+        mViewBinding.rlVehicle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mViewBinding.rlSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mViewBinding.rlVerified.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mViewBinding.rlSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mViewBinding.rlService.setOnClickListener(v ->
+                presenter.callPhone(MineFragment.this,"13779926287")
+        );
     }
 }

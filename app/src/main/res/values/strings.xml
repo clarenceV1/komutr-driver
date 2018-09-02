@@ -8,4 +8,11 @@
     <string name="tab_title_1">SCHEDULE</string>
     <string name="tab_title_2">ROUTE</string>
     <string name="tab_title_3">MINE</string>
+    <string name="mine_title">Mine</string>
+    <string name="my_wallet">My wallet</string>
+    <string name="my_vehicle">My vehicle</string>
+    <string name="my_verified">Verified</string>
+    <string name="my_schedule">My schedule</string>
+    <string name="my_setting">Setting</string>
+    <string name="my_service">Service tel</string>
 </resources>
