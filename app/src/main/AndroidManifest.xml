@@ -33,7 +33,9 @@
         <activity android:name="com.komutr.driver.ui.message.MessageActivity" />
         <activity android:name="com.komutr.driver.ui.message.MessageDetailActivity" />
         <activity android:name="com.komutr.driver.ui.wallet.WalletActivity" />
-        <activity android:name=".ui.verified.VerifiedActivity"/>
+        <activity android:name=".ui.verified.VerifiedActivity" />
+        <activity android:name=".ui.person.PersonActivity" />
+        <activity android:name=".ui.nickname.NicknameActivity"/>
     </application>
 
 </manifest>

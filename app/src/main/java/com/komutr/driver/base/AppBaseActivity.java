@@ -16,7 +16,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
  */
 
 public abstract class AppBaseActivity<M extends ViewDataBinding> extends GodBasePresenterActivity<M> {
-    TitleBarView titleBarView;
+   public TitleBarView titleBarView;
 
     @Override
     public void setStatusBar(SystemBarTintManager tintManager) {
@@ -30,14 +30,9 @@ public abstract class AppBaseActivity<M extends ViewDataBinding> extends GodBase
                 LinearLayout linearLayout = (LinearLayout) view;
                 titleBarView = new TitleBarView(this);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                linearLayout.addView(titleBarView,0, layoutParams);
+                linearLayout.addView(titleBarView, 0, layoutParams);
                 titleBarView.setTitleText(title);
-                titleBarView.setLeftClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                    }
-                });
+                titleBarView.setLeftClickListener(v -> finish());
             }
         }
     }

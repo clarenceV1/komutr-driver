@@ -3,7 +3,6 @@ package com.komutr.driver.ui.main;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cai.framework.base.GodBasePresenter;
@@ -44,12 +43,8 @@ public class MainActivity extends AppBaseActivity<MainBinding> implements MainVi
     @Override
     public void initView() {
         mFragmentManager = getSupportFragmentManager();
-        tabManager = new TabManager(mViewBinding, new ITabClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                switchFragment(position);
-            }
-        });
+        tabManager = new TabManager(mViewBinding, (v, position) ->
+                switchFragment(position));
     }
 
     public void switchFragment(int currentPosition) {

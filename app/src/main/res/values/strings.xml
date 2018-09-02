@@ -17,4 +17,11 @@
     <string name="my_service">Service tel</string>
     <string name="verified_name">Name</string>
     <string name="verified_driving_licence">driving licence</string>
+    <string name="person_title">Personal information</string>
+    <string name="person_nick_name">Nickname</string>
+    <string name="person_e_mail">E-mail</string>
+    <string name="person_date_birth">Date of birth</string>
+    <string name="person_gender">Gender</string>
+    <string name="nickname_title">Nickname</string>
+    <string name="save">Save</string>
 </resources>

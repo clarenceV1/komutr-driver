@@ -1,7 +1,5 @@
 package com.komutr.driver.ui.main.fragment;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.view.View;
 
 import com.cai.framework.base.GodBasePresenterFragment;
@@ -40,6 +38,10 @@ public class MineFragment extends GodBasePresenterFragment<MineBinding> implemen
     }
 
     private void initListener() {
+        mViewBinding.rlPerson.setOnClickListener(v ->
+                RouterManager.goPerson()
+        );
+
         mViewBinding.rlWalllet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
