@@ -33,6 +33,7 @@
         <activity android:name="com.komutr.driver.ui.message.MessageActivity" />
         <activity android:name="com.komutr.driver.ui.message.MessageDetailActivity" />
         <activity android:name="com.komutr.driver.ui.wallet.WalletActivity" />
+        <activity android:name=".ui.verified.VerifiedActivity"/>
     </application>
 
 </manifest>

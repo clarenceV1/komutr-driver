@@ -15,4 +15,6 @@
     <string name="my_schedule">My schedule</string>
     <string name="my_setting">Setting</string>
     <string name="my_service">Service tel</string>
+    <string name="verified_name">Name</string>
+    <string name="verified_driving_licence">driving licence</string>
 </resources>

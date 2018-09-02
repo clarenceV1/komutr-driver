@@ -7,6 +7,7 @@ import android.view.View;
 import com.cai.framework.base.GodBasePresenterFragment;
 import com.komutr.driver.R;
 import com.komutr.driver.base.App;
+import com.komutr.driver.common.RouterManager;
 import com.komutr.driver.databinding.MineBinding;
 
 import java.util.List;
@@ -57,12 +58,10 @@ public class MineFragment extends GodBasePresenterFragment<MineBinding> implemen
 
             }
         });
-        mViewBinding.rlVerified.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mViewBinding.rlVerified.setOnClickListener(v ->
+                RouterManager.goVerified()
+        );
 
-            }
-        });
         mViewBinding.rlSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +69,7 @@ public class MineFragment extends GodBasePresenterFragment<MineBinding> implemen
             }
         });
         mViewBinding.rlService.setOnClickListener(v ->
-                presenter.callPhone(MineFragment.this,"13779926287")
+                presenter.callPhone(MineFragment.this, "13779926287")
         );
     }
 }

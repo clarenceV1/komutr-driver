@@ -10,7 +10,7 @@ public class RouterManager {
     public static final String ROUTER_MESSAGE = ROUTER_HOME + "MessageActivity";
     public static final String ROUTER_MESSAGE_DETAIL = ROUTER_HOME + "MessageDetailActivity";
     public static final String ROUTER_FEEDBACK = ROUTER_HOME + "FeedbackActivity";
-    public static final String ROUTER_REGION = ROUTER_HOME + "RegionActivity";
+    public static final String ROUTER_VERIFIED = ROUTER_HOME + "VerifiedActivity";
     public static final String ROUTER_WALLET = ROUTER_HOME + "WalletActivity";
     public static final String ROUTER_NICKNAME= ROUTER_HOME + "NicknameActivity";
 
@@ -26,5 +26,9 @@ public class RouterManager {
     }
     public static void goNickname() {
         ARouter.getInstance().build(RouterManager.ROUTER_NICKNAME).navigation();
+    }
+
+    public static void goVerified() {
+        ARouter.getInstance().build(RouterManager.ROUTER_VERIFIED).navigation();
     }
 }

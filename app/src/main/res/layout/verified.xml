@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f1f1f4"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_0d000000" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/color_ffffff">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="19dp"
+                android:text="@string/verified_name"
+                android:textColor="@color/color_666666"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="14dp"
+                android:textColor="@color/color_000000"
+                android:textSize="15sp"
+                tools:text="My nudeu" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_ffffff"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="13dp"
+                android:layout_marginStart="13dp"
+                android:background="@color/color_0d000000" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/color_ffffff">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="19dp"
+                android:text="@string/verified_driving_licence"
+                android:textColor="@color/color_666666"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvDrivingLicence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="14dp"
+                android:textColor="@color/color_000000"
+                android:textSize="15sp"
+                tools:text="4154151515151154155" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_ffffff"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="13dp"
+                android:layout_marginStart="13dp"
+                android:background="@color/color_0d000000" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="202dp"
+            android:background="@color/color_ffffff">
+
+            <ImageView
+                android:id="@+id/imgVerified"
+                android:layout_width="250dp"
+                android:layout_height="159dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                tools:background="@color/color_000000" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

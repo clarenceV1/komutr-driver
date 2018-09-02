@@ -11,6 +11,7 @@ import com.komutr.driver.ui.main.fragment.RouteFragment;
 import com.komutr.driver.ui.main.fragment.ScheduleFragment;
 import com.komutr.driver.ui.message.MessageActivity;
 import com.komutr.driver.ui.message.MessageDetailActivity;
+import com.komutr.driver.ui.verified.VerifiedActivity;
 import com.komutr.driver.ui.wallet.WalletActivity;
 import com.komutr.driver.ui.web.WebActivity;
 
@@ -30,8 +31,11 @@ public interface AppComponent {
     void inject(MessageActivity activity);
     void inject(MessageDetailActivity activity);
     void inject(WalletActivity activity);
+    void inject(VerifiedActivity activity);
 
     void inject(ScheduleFragment fragment);
     void inject(RouteFragment fragment);
     void inject(MineFragment fragment);
+
+
 }
