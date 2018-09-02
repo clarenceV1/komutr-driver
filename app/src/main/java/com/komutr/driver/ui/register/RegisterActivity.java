@@ -35,8 +35,8 @@ public class RegisterActivity extends AppBaseActivity<RegisterBinding> implement
     public void initView() {
 
         mViewBinding.btnCommit.setOnClickListener(v -> {
-            String code = mViewBinding.etInputVerificAtionCode.getText().toString();
             String phone = mViewBinding.etPhone.getText().toString();
+            String code = mViewBinding.etCode.getText().toString();
             String password = mViewBinding.editPassword.getText().toString();
             if (phoneCode != null) {
                 presenter.registered(phone, password, code, phoneCode.getVer_token_key());

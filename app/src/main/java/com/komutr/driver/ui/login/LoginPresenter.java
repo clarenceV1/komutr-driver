@@ -58,14 +58,10 @@ public class LoginPresenter extends AppBasePresenter<LoginView> {
                 }
             }
         }).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(respondDO -> {
-                    if (respondDO.isStatus()) { //成功
-                        mView.registeredOrLoginCallBack(respondDO);
-                    } else {//失败
-                        mView.registeredOrLoginCallBack(respondDO);
-                    }
-                }, throwable ->
-                    Logger.e(throwable.getMessage())
+                .subscribe(respondDO ->
+                        mView.registeredOrLoginCallBack(respondDO)
+                        ,throwable ->
+                Logger.e(throwable.getMessage())
                 );
         mCompositeSubscription.add(disposable);
     }

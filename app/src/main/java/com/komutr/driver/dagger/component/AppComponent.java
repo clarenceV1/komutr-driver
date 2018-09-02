@@ -14,6 +14,7 @@ import com.komutr.driver.ui.main.fragment.ScheduleFragment;
 import com.komutr.driver.ui.message.MessageActivity;
 import com.komutr.driver.ui.message.MessageDetailActivity;
 import com.komutr.driver.ui.nickname.NicknameActivity;
+import com.komutr.driver.ui.password.ResetPasswordActivity;
 import com.komutr.driver.ui.person.PersonActivity;
 import com.komutr.driver.ui.register.RegisterActivity;
 import com.komutr.driver.ui.verified.VerifiedActivity;
@@ -42,6 +43,7 @@ public interface AppComponent {
     void inject(QRCodeActivity activity);
     void inject(IncomeRecordActivity activity);
     void inject(RegisterActivity activity);
+    void inject(ResetPasswordActivity activity);
 
 
     void inject(ScheduleFragment fragment);

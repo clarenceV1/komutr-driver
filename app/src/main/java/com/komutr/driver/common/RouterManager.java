@@ -1,6 +1,7 @@
 package com.komutr.driver.common;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.komutr.driver.ui.password.ResetPasswordActivity;
 import com.komutr.driver.ui.register.RegisterActivity;
 
 public class RouterManager {
@@ -17,6 +18,7 @@ public class RouterManager {
     public static final String ROUTER_QRCODE = ROUTER_HOME + "QRCodeActivity";
     public static final String ROUTER_INCOME_RECORD = ROUTER_HOME + "IncomeRecordActivity";
     public static final String ROUTER_REGISTER = ROUTER_HOME + "RegisterActivity";
+    public static final String ROUTER_RESET_PASSWORD = ROUTER_HOME + "ResetPasswordActivity";
 
 
     public static void goWeb(String url, String title, String paramMap) {
@@ -24,6 +26,10 @@ public class RouterManager {
                 .withString("url", url)
                 .withString("title", title)
                 .withString("paramMap", paramMap).navigation();
+    }
+
+    public static void goResetPassword() {
+        ARouter.getInstance().build(RouterManager.ROUTER_RESET_PASSWORD).navigation();
     }
 
     public static void goRegister() {

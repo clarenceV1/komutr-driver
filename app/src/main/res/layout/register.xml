@@ -10,7 +10,7 @@
             android:id="@+id/etPhone"
             style="@style/edit_text_style"
             android:layout_marginTop="21dp"
-            android:hint="@string/enter_your_phone_number" />
+            android:hint="phone" />
 
         <!--短信验证码-->
         <LinearLayout
@@ -21,7 +21,7 @@
             android:padding="0dp">
 
             <EditText
-                android:id="@+id/etInputVerificAtionCode"
+                android:id="@+id/etCode"
                 style="@style/edit_text_style"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -29,7 +29,7 @@
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:digits="1234567890"
-                android:hint="@string/input_verific_ation_code"
+                android:hint="code"
                 android:inputType="number"
                 android:lines="1"
                 android:paddingRight="0dp" />
@@ -44,6 +44,7 @@
         <EditText
             android:id="@+id/editPassword"
             android:layout_width="match_parent"
+            android:hint="editPassword"
             android:layout_height="wrap_content" />
 
         <Button

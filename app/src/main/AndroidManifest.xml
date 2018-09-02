@@ -39,6 +39,7 @@
         <activity android:name=".ui.code.QRCodeActivity" />
         <activity android:name=".ui.income.IncomeRecordActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
+        <activity android:name=".ui.password.ResetPasswordActivity" />
     </application>
 
 </manifest>
