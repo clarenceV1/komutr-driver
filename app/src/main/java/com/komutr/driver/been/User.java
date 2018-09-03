@@ -13,9 +13,6 @@ public class User {
     private String app_auth;
     private String check_status;
 
-    public User() {
-    }
-
     public long getId() {
         return id;
     }

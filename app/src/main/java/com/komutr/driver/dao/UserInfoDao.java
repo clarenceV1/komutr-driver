@@ -48,7 +48,7 @@ public class UserInfoDao extends BaseDAO {
 
     public String getAppAuth() {
         if (mUser != null) {
-            return mUser.getAuth_key();
+            return mUser.getApp_auth();
         }
         return null;
     }
@@ -62,21 +62,21 @@ public class UserInfoDao extends BaseDAO {
         if (userInfo == null) {
             return;
         }
-        if (!TextUtils.isEmpty(userInfo.getUsername())) {
-            mUser.setUsername(userInfo.getUsername());
-        }
-        if (!TextUtils.isEmpty(userInfo.getAvatar())) {
-            mUser.setAvatar(userInfo.getAvatar());
-        }
-        if (!TextUtils.isEmpty(userInfo.getBig_area())) {
-            mUser.setBig_area(userInfo.getBig_area());
-        }
-        if (!TextUtils.isEmpty(userInfo.getProvince())) {
-            mUser.setProvince(userInfo.getProvince());
-        }
-        if (!TextUtils.isEmpty(userInfo.getSex())) {
-            mUser.setSex(userInfo.getSex());
-        }
+//        if (!TextUtils.isEmpty(userInfo.getUsername())) {
+//            mUser.setUsername(userInfo.getUsername());
+//        }
+//        if (!TextUtils.isEmpty(userInfo.getAvatar())) {
+//            mUser.setAvatar(userInfo.getAvatar());
+//        }
+//        if (!TextUtils.isEmpty(userInfo.getBig_area())) {
+//            mUser.setBig_area(userInfo.getBig_area());
+//        }
+//        if (!TextUtils.isEmpty(userInfo.getProvince())) {
+//            mUser.setProvince(userInfo.getProvince());
+//        }
+//        if (!TextUtils.isEmpty(userInfo.getSex())) {
+//            mUser.setSex(userInfo.getSex());
+//        }
         userBox.put(mUser);
     }
 }
