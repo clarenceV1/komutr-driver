@@ -4,13 +4,16 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.cai.framework.base.GodBaseApplication;
 import com.cai.framework.logger.Logger;
+import com.example.clarence.utillibrary.UniqueIdUtils;
 import com.komutr.driver.base.AppBasePresenter;
+import com.komutr.driver.been.PhoneCode;
 import com.komutr.driver.been.RespondDO;
 import com.komutr.driver.been.User;
 import com.komutr.driver.common.Constant;
 import com.komutr.driver.dao.UserInfoDao;
-import com.komutr.driver.event.LoginEvent;
+import com.komutr.driver.event.EventPostInfo;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -38,31 +41,85 @@ public class LoginPresenter extends AppBasePresenter<LoginView> {
     public void onAttached() {
     }
 
-    public void login(String phone, String password) {
-        Map<String, String> query = new HashMap<>();
-        query.put("m", "chauffeur.login");
+
+    public void registeredOrLogin(String code, String phone, String verTokenKey) {
+        Map<String, Object> query = new HashMap<>();
+        query.put("m", "customer.registeredOrLogin");
+        query.put("auth_key", Constant.AUTH_KEY);
+        query.put("ver_token_key", verTokenKey);
+        query.put("app_key", UniqueIdUtils.getDeviceInfo(GodBaseApplication.getAppContext(), UniqueIdUtils.DEVICES_INFO.IMEI));
+        query.put("code", code);
         query.put("phone", phone);
-        query.put("password", password);
-        query.put("auth_key", Constant.APP_AUTH);
+        String pushClientId = dataStore.get().getGeTuiPushClientId();
+        query.put("device_code", pushClientId);
         Disposable disposable = requestStore.get().commonRequest(query).doOnSuccess(new Consumer<RespondDO>() {
             @Override
             public void accept(RespondDO respondDO) {
-                Log.d("login", respondDO.toString());
                 if (respondDO.isStatus() && !TextUtils.isEmpty(respondDO.getData())) {
                     User userInfo = JSON.parseObject(respondDO.getData(), User.class);
                     respondDO.setObject(userInfo);
                     if (userInfoDao != null) {
                         userInfoDao.get().saveAndDelete(userInfo);
                     }
-                    EventBus.getDefault().post(new LoginEvent(1, userInfo));
+                    EventBus.getDefault().post(new EventPostInfo(EventPostInfo.UPDATE_PERSON_INFO_SUCCESS));
                 }
             }
         }).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(respondDO ->
-                        mView.registeredOrLoginCallBack(respondDO)
-                        ,throwable ->
-                Logger.e(throwable.getMessage())
-                );
+                .subscribe(new Consumer<RespondDO>() {
+                    @Override
+                    public void accept(RespondDO respondDO) {
+                        Log.d("registeredOrLogin", respondDO.toString());
+                        mView.registeredOrLoginCallBack(respondDO);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) {
+                        Logger.e(throwable.getMessage());
+                        RespondDO respondDO = new RespondDO();
+                        respondDO.setFromCallBack(-1);
+                        mView.registeredOrLoginCallBack(respondDO);
+                    }
+                });
+        mCompositeSubscription.add(disposable);
+    }
+
+    /**
+     * 获取验证码
+     *
+     * @param phone
+     */
+    public void verificationCode(final String phone) {
+        Map<String, Object> query = new HashMap<>();
+        query.put("m", "customer.verification");
+        query.put("auth_key", Constant.AUTH_KEY);
+        query.put("phone", phone);
+        query.put("type", "1");// 1 注册 2 找回密码 3 重置密码 4.重新绑定
+        Disposable disposable = requestStore.get().commonRequest(query)
+                .doOnSuccess(new Consumer<RespondDO>() {
+                    @Override
+                    public void accept(RespondDO respondDO) {
+                        if (respondDO.isStatus() && !TextUtils.isEmpty(respondDO.getData())) {
+                            PhoneCode phoneCode = JSON.parseObject(respondDO.getData(), PhoneCode.class);
+                            respondDO.setObject(phoneCode);
+                        }
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<RespondDO>() {
+                    @Override
+                    public void accept(RespondDO respondDO) {
+                        Logger.d(respondDO.toString());
+                        mView.verificationCodeCallback(respondDO);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) {
+                        Logger.e(throwable.getMessage());
+                        RespondDO respondDO = new RespondDO();
+                        respondDO.setFromCallBack(-1);
+                        mView.verificationCodeCallback(respondDO);
+                    }
+                });
         mCompositeSubscription.add(disposable);
     }
 }

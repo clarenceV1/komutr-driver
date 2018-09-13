@@ -37,9 +37,9 @@ public class RegisterPresenter extends AppBasePresenter<RegisterView> {
     }
 
     public void registered( String phone,String password, String code, String verTokenKey) {
-        Map<String, String> query = new HashMap<>();
+        Map<String, Object> query = new HashMap<>();
         query.put("m", "chauffeur.registered");
-        query.put("auth_key", Constant.APP_AUTH);
+        query.put("auth_key", Constant.AUTH_KEY);
         query.put("phone", phone);
         query.put("ver_token_key", verTokenKey);
         query.put("code", code);
@@ -67,9 +67,9 @@ public class RegisterPresenter extends AppBasePresenter<RegisterView> {
      * type  1 注册 2 找回密码 3 重置密码
      */
     public void verificationCode(final String phone) {
-        Map<String, String> query = new HashMap<>();
+        Map<String, Object> query = new HashMap<>();
         query.put("m", "customer.verification");
-        query.put("auth_key", Constant.APP_AUTH);
+        query.put("auth_key", Constant.AUTH_KEY);
         query.put("phone", phone);
         query.put("type", "1");
         Disposable disposable = requestStore.get().commonRequest(query)

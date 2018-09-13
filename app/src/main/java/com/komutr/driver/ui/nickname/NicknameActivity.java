@@ -1,9 +1,12 @@
 package com.komutr.driver.ui.nickname;
 
-import android.widget.TextView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cai.framework.base.GodBasePresenter;
+import com.example.clarence.utillibrary.ToastUtils;
 import com.komutr.driver.R;
 import com.komutr.driver.base.App;
 import com.komutr.driver.base.AppBaseActivity;
@@ -11,15 +14,15 @@ import com.komutr.driver.been.RespondDO;
 import com.komutr.driver.common.RouterManager;
 import com.komutr.driver.databinding.NicknameBinding;
 
+
 import java.util.List;
 
 import javax.inject.Inject;
 
-@Route(path = RouterManager.ROUTER_NICKNAME, name = "昵称")
-public class NicknameActivity extends AppBaseActivity<NicknameBinding> implements NicknameView {
+@Route(path = RouterManager.ROUTER_NICKNAME, name = "我的-个人信息-昵称")
+public class NicknameActivity extends AppBaseActivity<NicknameBinding> implements NicknameView, View.OnClickListener, TextWatcher {
     @Inject
     NicknamePresenter presenter;
-    TextView tvRight;
 
     @Override
     public void initDagger() {
@@ -33,17 +36,9 @@ public class NicknameActivity extends AppBaseActivity<NicknameBinding> implement
 
     @Override
     public void initView() {
-        setBarTitle(getString(R.string.nickname_title));
-        if (titleBarView != null) {
-            titleBarView.setRightText(getString(R.string.save));
-            tvRight = titleBarView.getRightTextView();
-            tvRight.setOnClickListener(v -> {
-                        String nickName = mViewBinding.editNickname.getText().toString();
-                        presenter.checkUsername(nickName);
-                    }
-            );
-        }
-        mViewBinding.tvTxtNum.setText("0/20");
+        mViewBinding.ivBack.setOnClickListener(this);
+        mViewBinding.rbSave.setOnClickListener(this);
+        mViewBinding.etNickName.addTextChangedListener(this);
     }
 
     @Override
@@ -53,11 +48,49 @@ public class NicknameActivity extends AppBaseActivity<NicknameBinding> implement
 
     @Override
     public void updateMyData(RespondDO respondDO) {
-
+        hiddenDialog();
+        ToastUtils.showShort(respondDO.getMsg());
+        if(respondDO.isStatus()){
+            finish();
+        }
     }
 
     @Override
     public void checkUsername(RespondDO respondDO) {
+     if(!respondDO.isStatus()){
+         hiddenDialog();
+         ToastUtils.showShort(respondDO.getMsg());
+     }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.rbSave://保存
+                showDialog(getString(R.string.updating),true);
+                String nickName = mViewBinding.etNickName.getText().toString();
+                presenter.checkUsername(nickName);
+                break;
+            case R.id.ivBack:
+                finish();
+                break;
+        }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        int length = charSequence.toString().length();
+        mViewBinding.tvContentLength.setText(length + "/20");
+        mViewBinding.rbSave.setChecked(length > 0);
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
 
     }
 }

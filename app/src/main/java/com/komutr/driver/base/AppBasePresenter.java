@@ -5,6 +5,7 @@ import com.komutr.driver.common.AppDataCacheStore;
 import com.komutr.driver.common.AppDataStore;
 import com.komutr.driver.common.AppFileStore;
 import com.komutr.driver.common.AppRequestStore;
+import com.komutr.driver.dao.MessageDao;
 import com.komutr.driver.dao.UserInfoDao;
 
 import javax.inject.Inject;
@@ -22,6 +23,9 @@ public abstract class AppBasePresenter<V> extends GodBasePresenter<V> {
     @Inject
     public Lazy<AppDataCacheStore> cacheStore;
     @Inject
-    public UserInfoDao userInfoDao;
+    public Lazy<UserInfoDao> userInfoDao;
+    @Inject
+    public Lazy<MessageDao> messageDao;
+
 
 }

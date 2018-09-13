@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.komutr.driver">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -9,37 +12,66 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
+    <!--个推要的-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
-        android:name="com.komutr.driver.base.App"
+        android:name=".base.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.komutr.driver.ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.komutr.driver.ui.web.WebActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
-        <activity android:name="com.komutr.driver.ui.login.LoginActivity" />
-        <activity android:name="com.komutr.driver.ui.message.MessageActivity" />
-        <activity android:name="com.komutr.driver.ui.message.MessageDetailActivity" />
-        <activity android:name="com.komutr.driver.ui.wallet.WalletActivity" />
-        <activity android:name=".ui.verified.VerifiedActivity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAxHMfmeiL7jXuc8Q5aPlyYf2bIBV4HJfs" />
         <activity android:name=".ui.person.PersonActivity" />
-        <activity android:name=".ui.nickname.NicknameActivity" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities=".fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".ui.web.WebActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".ui.message.details.MessageDetailsActivity" />
+        <activity android:name=".ui.qrcode.activity.MipcaActivityCapture" />
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.message.MessageActivity" />
+        <activity android:name=".ui.faq.FAQActivity" />
+        <activity android:name=".ui.feedback.FeedbackActivity" />
+        <activity android:name=".ui.phoneNumber.BindPhoneActivity" />
+        <activity android:name=".ui.phoneNumber.ReplacePhoneActivity" />
+        <activity android:name=".ui.aboutUs.AboutUsActivity" />
+        <activity android:name=".ui.helpCenter.HelpCenterActivity" />
+        <activity android:name=".ui.wallet.WalletActivity" />
         <activity android:name=".ui.code.QRCodeActivity" />
-        <activity android:name=".ui.income.IncomeRecordActivity" />
-        <activity android:name=".ui.register.RegisterActivity" />
-        <activity android:name=".ui.password.ResetPasswordActivity" />
+        <activity android:name=".ui.income.IncomeRecordActivity"/>
+        <activity android:name=".ui.nickname.NicknameActivity"/>
+        <activity android:name=".ui.verified.VerifiedActivity"/>
+        <activity android:name=".ui.password.ResetPasswordActivity"/>
+        <service
+            android:name=".service.GeTuiPushService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice" />
+        <service android:name=".service.GeTuiIntentService" />
     </application>
 
 </manifest>

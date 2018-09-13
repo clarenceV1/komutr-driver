@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f1f1f4"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/etFeedBackContent"
+            style="@style/edit_text_style"
+            android:layout_height="185dp"
+            android:gravity="left"
+            android:lines="100"
+            android:padding="11dp"
+            android:maxLength="500"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:hint="@string/comment_content"
+            android:layout_margin="0dp"/>
+
+        <TextView
+            android:id="@+id/tvContentLength"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="13dp"
+            android:textColor="@color/color_666666"
+            android:textSize="13sp"
+            android:text="0/500"/>
+
+
+        <Button
+            android:id="@+id/btnSubmit"
+            style="@style/button_style"
+            android:layout_width="180dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="0dp"
+            android:background="@drawable/submit_bg"
+            android:enabled="true"
+            android:gravity="center"
+            android:text="@string/submit" />
+
+
+    </LinearLayout>
+</layout>

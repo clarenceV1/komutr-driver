@@ -4,10 +4,15 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.cai.framework.base.GodBaseApplication;
 import com.cai.framework.logger.Logger;
+import com.komutr.driver.R;
 import com.komutr.driver.base.AppBasePresenter;
 import com.komutr.driver.been.RespondDO;
 import com.komutr.driver.been.User;
+import com.komutr.driver.event.EventPostInfo;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,8 +40,8 @@ public class NicknamePresenter extends AppBasePresenter<NicknameView> {
      * @param username
      */
     public void checkUsername(final String username) {
-        String auth_key = userInfoDao.getAppAuth();
-        Map<String, String> query = new HashMap<>();
+        String auth_key = userInfoDao.get().getAppAuth();
+        Map<String, Object> query = new HashMap<>();
         query.put("m", "customer.checkUsername");
         query.put("auth_key", auth_key);
         query.put("username", username);
@@ -47,16 +52,21 @@ public class NicknamePresenter extends AppBasePresenter<NicknameView> {
                     public void accept(RespondDO respondDO) {
                         Log.d("checkUsername", respondDO.toString());
                         if (respondDO.isStatus()) { //成功
-                            mView.checkUsername(respondDO);
-                        } else {//失败
+                            updateMyData(username, null, -1, -1, -1);
+                        }else {
                             mView.checkUsername(respondDO);
                         }
-                        updateMyData(username, null, -1, -1, -1);
+
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) {
                         Logger.e(throwable.getMessage());
+                        RespondDO respondDO = new RespondDO();
+                        respondDO.setMsg(GodBaseApplication.getAppContext().getString(R.string.request_failed));
+                        respondDO.setStatus(false);
+                        mView.checkUsername(respondDO);
+
                     }
                 });
         mCompositeSubscription.add(disposable);
@@ -72,8 +82,8 @@ public class NicknamePresenter extends AppBasePresenter<NicknameView> {
      * @param sex      性别 1男 2女
      */
     public void updateMyData(String username, String avatar, int big_area, int province, int sex) {
-        Map<String, String> query = new HashMap<>();
-        String auth_key = userInfoDao.getAppAuth();
+        Map<String, Object> query = new HashMap<>();
+        String auth_key = userInfoDao.get().getAppAuth();
         query.put("m", "customer.updateMyData");
         query.put("auth_key", auth_key);
         if (!TextUtils.isEmpty(avatar)) {
@@ -83,21 +93,22 @@ public class NicknamePresenter extends AppBasePresenter<NicknameView> {
             query.put("username", username);
         }
         if (big_area != -1) {
-            query.put("big_area", big_area + "");
+            query.put("big_area", big_area);
         }
         if (province != -1) {
-            query.put("province", province + "");
+            query.put("province", province);
         }
         if (sex != -1) {
-            query.put("sex", sex + "");
+            query.put("sex", sex);
         }
         Disposable disposable = requestStore.get().commonRequest(query).doOnSuccess(new Consumer<RespondDO>() {
             @Override
             public void accept(RespondDO respondDO) {
                 if (respondDO.isStatus() && !TextUtils.isEmpty(respondDO.getData())) {
                     User userInfo = JSON.parseObject(respondDO.getData(), User.class);
-                    userInfoDao.updateUser(userInfo);
+                    userInfoDao.get().updateUser(userInfo);
                     respondDO.setObject(userInfo);
+                    EventBus.getDefault().post(new EventPostInfo(EventPostInfo.UPDATE_PERSON_INFO_SUCCESS));
                 }
             }
         }).observeOn(AndroidSchedulers.mainThread())
@@ -115,6 +126,11 @@ public class NicknamePresenter extends AppBasePresenter<NicknameView> {
                     @Override
                     public void accept(Throwable throwable) {
                         Logger.e(throwable.getMessage());
+                        RespondDO respondDO = new RespondDO();
+                        respondDO.setMsg(GodBaseApplication.getAppContext().getString(R.string.request_failed));
+                        respondDO.setStatus(false);
+                        mView.updateMyData(respondDO);
+
                     }
                 });
         mCompositeSubscription.add(disposable);

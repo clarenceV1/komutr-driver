@@ -35,9 +35,9 @@ public class ResetPasswordPresenter extends AppBasePresenter<ResetPasswordView> 
      * @param phone type  1 注册 2 找回密码 3 重置密码
      */
     public void verificationCode(final String phone) {
-        Map<String, String> query = new HashMap<>();
+        Map<String, Object> query = new HashMap<>();
         query.put("m", "customer.verification");
-        query.put("auth_key", Constant.APP_AUTH);
+        query.put("auth_key", Constant.AUTH_KEY);
         query.put("phone", phone);
         query.put("type", "2");
         Disposable disposable = requestStore.get().commonRequest(query)

@@ -2,12 +2,15 @@ package com.komutr.driver.base;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cai.framework.base.GodBaseApplication;
+import com.igexin.sdk.PushManager;
 import com.komutr.driver.BuildConfig;
 import com.komutr.driver.been.MyObjectBox;
 import com.komutr.driver.common.Constant;
 import com.komutr.driver.dagger.component.AppComponent;
 import com.komutr.driver.dagger.component.DaggerAppComponent;
 import com.komutr.driver.dagger.component.DaggerCommonComponent;
+import com.komutr.driver.service.GeTuiIntentService;
+import com.komutr.driver.service.GeTuiPushService;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import javax.inject.Inject;
@@ -32,6 +35,16 @@ public class App extends GodBaseApplication {
         initCrashReport();
         initComponent();
         initSql();
+        initGeTuiPush();
+    }
+
+    private void initGeTuiPush() {
+        // com.getui.demo.DemoPushService 为第三方自定义推送服务
+        PushManager.getInstance().initialize(this, GeTuiPushService.class);
+        // com.getui.demo.DemoIntentService 为第三方自定义的推送服务事件接收类
+        PushManager.getInstance().registerPushIntentService(this, GeTuiIntentService.class);
+
+
     }
 
     private void initSql() {

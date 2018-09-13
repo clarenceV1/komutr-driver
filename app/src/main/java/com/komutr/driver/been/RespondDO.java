@@ -20,6 +20,20 @@ public class RespondDO<T> {
     private long time;//有得接口没有返回这个
     private T object;//自己用
 
+    /**
+     * -1为异常回调
+     */
+    private int fromCallBack;
+
+
+    public int getFromCallBack() {
+        return fromCallBack;
+    }
+
+    public void setFromCallBack(int fromCallBack) {
+        this.fromCallBack = fromCallBack;
+    }
+
     public T getObject() {
         return object;
     }
@@ -74,5 +88,19 @@ public class RespondDO<T> {
 
     public void setTime(long time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "RespondDO{" +
+                "type='" + type + '\'' +
+                ", status=" + status +
+                ", code='" + code + '\'' +
+                ", msg='" + msg + '\'' +
+                ", data='" + data + '\'' +
+                ", time=" + time +
+                ", object=" + object +
+                ", fromCallBack=" + fromCallBack +
+                '}';
     }
 }
