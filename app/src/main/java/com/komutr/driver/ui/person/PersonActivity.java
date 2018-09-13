@@ -33,6 +33,9 @@ public class PersonActivity extends AppBaseActivity<PersonBinding> implements Pe
         mViewBinding.rLNickname.setOnClickListener(v ->
                 RouterManager.goNickname()
         );
+        mViewBinding.rLEMail.setOnClickListener(v ->
+                RouterManager.goBindEmail()
+        );
     }
 
     @Override

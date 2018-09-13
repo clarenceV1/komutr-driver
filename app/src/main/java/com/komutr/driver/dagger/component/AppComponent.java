@@ -7,6 +7,7 @@ import com.komutr.driver.dagger.module.CommonModule;
 import com.komutr.driver.service.GeTuiIntentService;
 import com.komutr.driver.ui.aboutUs.AboutUsActivity;
 import com.komutr.driver.ui.code.QRCodeActivity;
+import com.komutr.driver.ui.email.BindEmailActivity;
 import com.komutr.driver.ui.faq.FAQActivity;
 import com.komutr.driver.ui.feedback.FeedbackActivity;
 import com.komutr.driver.ui.helpCenter.HelpCenterActivity;
@@ -38,6 +39,7 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(App app);
+    void inject(BindEmailActivity fragment);
     void inject(ResetPasswordActivity fragment);
     void inject(RegisterActivity fragment);
     void inject(VerifiedActivity fragment);

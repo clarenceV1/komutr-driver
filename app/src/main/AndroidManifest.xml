@@ -66,6 +66,7 @@
         <activity android:name=".ui.nickname.NicknameActivity"/>
         <activity android:name=".ui.verified.VerifiedActivity"/>
         <activity android:name=".ui.password.ResetPasswordActivity"/>
+        <activity android:name=".ui.email.BindEmailActivity"/>
         <service
             android:name=".service.GeTuiPushService"
             android:exported="true"
